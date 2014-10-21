@@ -1,0 +1,15 @@
+section{
+	margin-bottom:15px;
+}
+.harga h1{
+	font-size:8em;
+}
+.harga small{
+	vertical-align:top;
+}
+.harga .page-header{
+	margin-top:0;
+}
+.client{
+	font-size:2em;
+}
