@@ -16,8 +16,12 @@
 						<input type="text" class="form-control" value="<?= $val->nama ?>" name="nama" placeholder="Input Nama">
 					</div>
 					<div class="form-group">
-						<label for="">Harga</label>
-						<input type="text" class="form-control" value="<?= $val->harga ?>" name="harga" placeholder="Input Harga">
+						<label for="">Harga Beli</label>
+						<input type="text" class="form-control" value="<?= $val->harga_beli ?>" name="hargabeli" placeholder="Input Harga Beli">
+					</div>
+					<div class="form-group">
+						<label for="">Harga Jual</label>
+						<input type="text" class="form-control" value="<?= $val->harga_jual ?>" name="hargajual" placeholder="Input Harga Jual">
 					</div>
 					<div class="form-group">
 						<label for="">Stok</label>

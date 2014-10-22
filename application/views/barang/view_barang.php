@@ -23,7 +23,8 @@
 							<tr>
 								<th>Id</th>
 								<th>Nama</th>
-								<th>Harga</th>
+								<th>Harga Beli</th>
+								<th>Harga Jual</th>
 								<th>Stok</th>
 								<th>Action</th>
 							</tr>
@@ -33,7 +34,8 @@
 								<tr>
 									<td><?= $row->id ?></td>
 									<td><?= $row->nama ?></td>
-									<td><?= $row->harga ?></td>
+									<td><?= $row->harga_beli ?></td>
+									<td><?= $row->harga_jual ?></td>
 									<td><?= $row->stok ?></td>
 									<td>
 										<a href="<?= site_url('inventory/updateBarang/'.$row->id) ?>">Edit</a>

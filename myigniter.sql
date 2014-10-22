@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 21, 2014 at 01:11 PM
+-- Generation Time: Oct 22, 2014 at 09:58 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -29,32 +29,21 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `barang` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nama` varchar(50) NOT NULL,
-  `harga` int(11) NOT NULL,
+  `harga_beli` int(100) NOT NULL,
+  `harga_jual` int(100) NOT NULL,
   `stok` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=457 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=824 ;
 
 --
 -- Dumping data for table `barang`
 --
 
-INSERT INTO `barang` (`id`, `nama`, `harga`, `stok`) VALUES
-(123, 'Buku', 1500, 10),
-(456, 'Kertas A4', 5000, 12);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `example`
---
-
-CREATE TABLE IF NOT EXISTS `example` (
-  `id` int(4) NOT NULL AUTO_INCREMENT,
-  `varchar` varchar(255) NOT NULL,
-  `text` text NOT NULL,
-  `date` date NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+INSERT INTO `barang` (`id`, `nama`, `harga_beli`, `harga_jual`, `stok`) VALUES
+(123, 'Buku', 1500, 2000, 10),
+(258, 'Mouse', 50000, 55000, 10),
+(456, 'Kertas A4', 5000, 5500, 12),
+(789, 'Keyboard', 40000, 45000, 15);
 
 -- --------------------------------------------------------
 

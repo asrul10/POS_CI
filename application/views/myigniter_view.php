@@ -14,7 +14,7 @@
 <section>
 	<div class="container">
 	<div class="row">
-		<div class="col-lg-4">
+		<div class="col-md-4">
 			<form action="<?= site_url('myigniter/keranjang') ?>" method="POST" role="form">
 				<div class="form-group">
 					<label>Kode</label>
@@ -23,18 +23,18 @@
 					<input type="text" name="qty"  autocomplete="off" class="form-control" id="" placeholder="Quantity" required="required">
 				</div>
 				<div align="right">		
-					<button type="submit" class="btn btn-primary">Tambah</button>
-					<a href="<?= site_url('myigniter/delete') ?> " class="btn btn-danger">Hapus</a>		
-					<a href="<?= site_url('myigniter/selesai') ?> " class="btn btn-success">Selesai</a>
+					<button type="submit" class="btn btn-primary"> Tambah</button>
+					<a href="<?= site_url('myigniter/selesai') ?> " class="btn btn-success"> Selesai</a>
 				</div>
 			</form>
 		</div>
-		<div class="col-lg-4 harga">
+		<div class="col-md-4 harga">
 			  <h1><small>Total Rp.</small></h1>
 		</div>
-		<div class="col-lg-4 harga">
+		<div class="col-md-4 harga">
 			<div align="right">
 			  <h1><?= $this->cart->total() ?>,-</h1>
+			<a href="<?= site_url('myigniter/delete') ?> " class="btn btn-default">Hapus Semua</a>		
 			</div>					
 		</div>
 	</div>
@@ -54,11 +54,12 @@
 							<th>Quantity</th>
 							<th>Harga Satuan</th>
 							<th>Harga Total</th>
+							<th>Hapus</th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php if(empty($this->cart->contents())){
-							echo "<tr><td colspan='5' class='text-center'>Data Kosong</td></tr>";
+							echo "<tr><td colspan='6' class='text-center'>Data Kosong</td></tr>";
 						} ?>
 						<?php foreach ($this->cart->contents() as $items): ?>
 							<tr>
@@ -67,6 +68,7 @@
 							  <td><?= $items['qty'] ?></td>
 							  <td><?= $items['price'] ?></td>
 							  <td><?php echo $total = $items['price']*$items['qty']; ?></td>
+							  <td><a href="<?= site_url('myigniter/deleterow/'.$items['rowid']) ?>">Hapus</a> </td>
 							</tr>
 						<?php endforeach; ?>
 					</tbody>

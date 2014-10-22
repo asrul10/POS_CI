@@ -34,7 +34,7 @@ class Myigniter extends CI_Controller {
 				$data = array(
 					'id'      => $row->id,
 					'qty'     => $qty,
-					'price'   => $row->harga,
+					'price'   => $row->harga_jual,
 					'name'    => $row->nama
 				);
 				$this->cart->insert($data);
@@ -78,6 +78,16 @@ class Myigniter extends CI_Controller {
 		$this->template->output($data, $content);
 	}
 
+	public function deleterow($id)
+	{
+		$data = array(
+			'rowid'   => $id,
+			'qty'     => 0
+		);
+
+		$this->cart->update($data);
+		redirect('myigniter'); 
+	}
 	public function delete()
 	{
         $this->cart->destroy();
