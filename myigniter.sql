@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 22, 2014 at 09:58 AM
+-- Generation Time: Oct 23, 2014 at 02:08 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `barang` (
   `harga_jual` int(100) NOT NULL,
   `stok` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=824 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=790 ;
 
 --
 -- Dumping data for table `barang`
@@ -66,8 +66,8 @@ CREATE TABLE IF NOT EXISTS `penjualan` (
 --
 
 INSERT INTO `penjualan` (`id`, `id_barang`, `qty`, `total_harga`, `tgl`, `setor`) VALUES
-(14, 123, 2, 3000, '2014-10-20', 0),
-(15, 456, 2, 10000, '2014-10-20', 0),
+(14, 123, 2, 3000, '2014-10-20', 1),
+(15, 456, 2, 10000, '2014-10-20', 1),
 (16, 123, 2, 3000, '2014-10-19', 0);
 
 -- --------------------------------------------------------
@@ -85,7 +85,14 @@ CREATE TABLE IF NOT EXISTS `setor` (
   `total_setor` int(100) NOT NULL,
   `selisih` int(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `setor`
+--
+
+INSERT INTO `setor` (`id`, `penyetor`, `tgl_jual`, `tgl_setor`, `total_jual`, `total_setor`, `selisih`) VALUES
+(2, 'admin', '2014-10-20', '2014-10-23', 13000, 10000, -3000);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

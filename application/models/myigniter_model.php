@@ -51,6 +51,14 @@ class Myigniter_model extends CI_Model {
         return $this->db->get();
 	}
 
+	function totalSetor($table, $condition)
+	{
+		$this->db->select_sum('total_harga');
+		$this->db->where($condition); 
+        $this->db->from($table);
+
+        return $this->db->get();
+	}
 }
 
 /* End of file myigniter_model.php */

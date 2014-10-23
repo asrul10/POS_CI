@@ -71,11 +71,33 @@ class Myigniter extends CI_Controller {
 
 	public function setoranSubmit()
 	{
-		$table = "setor";
+		$this->load->helper('date');
+		$datestring = "%Y-%m-%d";
+		$tgl = mdate($datestring);
 
-		$data['title'] = "penjualan";
-		$content = "penjualan";
-		$this->template->output($data, $content);
+		$tgl_jual = $this->input->post('tgljual');
+		$tablePenjualan = "penjualan";
+		$condition['tgl'] = $tgl_jual;
+		$selectTotal = $this->myigniter_model->totalSetor($tablePenjualan, $condition);
+		foreach ($selectTotal->result() as $tot) {
+			$total_jual = $tot->total_harga;
+			$total_setor = $this->input->post('setor');
+			$selisih = $total_setor - $total_jual;
+			$table = "setor";
+			$data = array(
+				'penyetor' => $this->input->post('nama') , 
+				'tgl_jual' => $tgl_jual , 
+				'tgl_setor' => $tgl , 
+				'total_jual' => $total_jual, 
+				'total_setor' => $total_setor, 
+				'selisih' => $selisih
+				);
+			$this->myigniter_model->addData($table, $data);
+		}
+		$data = array('setor' => 1, );
+		$updatePenjualan = $this->myigniter_model->updateData($tablePenjualan, $data, $condition);
+
+		redirect('myigniter/setoran','refresh');
 	}
 
 	public function deleterow($id)
