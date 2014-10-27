@@ -10,23 +10,45 @@
 	</div>
 	</div>
 </header>
+
 <!-- Form -->
 <section>
 	<div class="container">
 	<div class="row">
 		<div class="col-md-4">
-			<form action="<?= site_url('myigniter/keranjang') ?>" method="POST" role="form">
-				<div class="form-group">
-					<label>Kode</label>
-					<input type="text" name="kode" autocomplete="off" autofocus="autofocus" class="form-control" id="" placeholder="Kode" required="required">
-					<label>Quantity</label>
-					<input type="text" name="qty"  autocomplete="off" class="form-control" id="" placeholder="Quantity" required="required">
-				</div>
-				<div align="right">		
-					<button type="submit" class="btn btn-primary"> Tambah</button>
-					<a href="<?= site_url('myigniter/selesai') ?> " class="btn btn-success"> Selesai</a>
-				</div>
-			</form>
+			
+
+	<div class="bs-example bs-example-tabs">
+	    <ul id="myTab" class="nav nav-tabs" role="tablist">
+	      <li class="active"><a href="#home" role="tab" data-toggle="tab">Auto</a></li>
+	      <li class=""><a href="#profile" role="tab" data-toggle="tab">Manual</a></li>
+	    </ul>
+
+	    <div id="myTabContent" class="tab-content">
+	        <div class="tab-pane fade active in" id="home">
+		      	<form id="form" action="<?= site_url('myigniter/keranjang') ?>" method="POST" role="form">
+					<div class="form-group">
+						<label>Kode</label>
+						<input id="kode" type="text" name="kode" autocomplete="off" autofocus="autofocus" class="form-control" placeholder="Kode" required="required">
+					</div>
+					<div align="right">		
+					</div>
+				</form>
+		    </div>
+		    <div class="tab-pane fade " id="profile">
+		    	<form action="<?= site_url('myigniter/keranjang') ?>" method="POST" role="form">
+					<div class="form-group">
+						<label>Kode</label>
+						<input type="text" name="kode" autocomplete="off" autofocus="autofocus" class="form-control" placeholder="Kode" required="required">
+					</div>
+					<div align="right">		
+						<button type="submit" class="btn btn-primary tabs"> Tambah</button>
+					</div>
+				</form>
+	        </div>
+	    </div>
+	</div>
+
 		</div>
 		<div class="col-md-4 harga">
 			  <h1><small>Total Rp.</small></h1>
@@ -34,7 +56,8 @@
 		<div class="col-md-4 harga">
 			<div align="right">
 			  <h1><?= $this->cart->total() ?>,-</h1>
-			<a href="<?= site_url('myigniter/delete') ?> " class="btn btn-default">Hapus Semua</a>		
+				<a href="<?= site_url('myigniter/delete') ?> " class="btn btn-default">Hapus Semua</a>
+				<a href="<?= site_url('myigniter/selesai') ?> " class="btn btn-success"> Selesai</a>		
 			</div>					
 		</div>
 	</div>

@@ -5,12 +5,22 @@ $(document).ready(function () {
          return this.href == url;
     }).parent().addClass('active');
 
-    //$('ul.dropdown-menu a[href="'+ url +'"]').parent().addClass('active').filter(function(){
     $('.dropdown-menu li.active').filter(function(){
      $('li.dropdown').addClass('active');
     });
-
-    //$('ul.dropdown-menu a').filter(function() {
-     //    return this.href == url;
-    //}).parent().addClass('active');
 });
+
+$('#myTab a').click(function (e) {
+  e.preventDefault();
+  $(this).tab('show');
+})
+
+$('#kode').keyup(function() {
+    pewaktu();
+});
+
+function pewaktu(){
+    setTimeout(function(){
+      $('#form').submit();
+    }, 700);
+}

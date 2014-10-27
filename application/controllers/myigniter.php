@@ -21,26 +21,49 @@ class Myigniter extends CI_Controller {
 	{
 		$table = "barang";
 		$condition['id'] = $this->input->post('kode');
-		$qty = $this->input->post('qty');
 		$get = $this->myigniter_model->getData($table, $condition);
 		$jml = $get->num_rows();
+		$tambah = TRUE;
 
-        if($jml == 0){ 
-        	echo "<script>
-        	     alert('Barang tidak ada');
-			</script>";
-        }else{
-        	foreach ($get->result() as $row) {
-				$data = array(
-					'id'      => $row->id,
-					'qty'     => $qty,
-					'price'   => $row->harga_jual,
-					'name'    => $row->nama
+		foreach ($this->cart->contents() as $items){
+			$kode = $this->input->post('kode');
+			  if($items['id'] == $kode){
+			  	$total = $items['qty'] + 1;
+			  	$data = array(
+					'rowid'   => $items['rowid'],
+					'qty'     => $total
 				);
-				$this->cart->insert($data);
+
+				$this->cart->update($data);
+				$tambah = FALSE;
+				break;
+			  }
+		}
+
+		if($tambah){
+	        if($jml == 0){
+	        	/*
+	        	echo "<script>
+	        	alert('Id barang yang dimasukan tidak ada!');
+	        	</script>";
+	        	*/
+	        }else{
+	        	foreach ($get->result() as $row) {
+					$data = array(
+						'id'      => $row->id,
+						'qty'     => 1,
+						'price'   => $row->harga_jual,
+						'name'    => $row->nama
+					);
+					$this->cart->insert($data);
+					break;
+				}
 			}
 		}
-		redirect('myigniter');
+
+		$data['title'] = "Kasri 1.0";
+		$content = "myigniter_view";
+		$this->template->output($data, $content);
 	}
 
 	public function client()

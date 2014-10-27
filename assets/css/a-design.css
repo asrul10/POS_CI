@@ -14,3 +14,6 @@ section{
 .client{
 	font-size:2em;
 }
+.tab-pane{
+	margin-top:16px;
+}
