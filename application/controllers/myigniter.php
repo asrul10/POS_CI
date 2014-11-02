@@ -12,21 +12,43 @@ class Myigniter extends CI_Controller {
 	
 	public function index()
 	{
+		$table = "barang";
+		$data['cari'] = $this->myigniter_model->get($table);
+
 		$data['title'] = "Kasri 1.0";
 		$content = "myigniter_view";
 		$this->template->output($data, $content);
 	}
 
-	public function keranjang()
+	public function daftarkeranjang()
+	{
+		foreach ($this->cart->contents() as $items){
+			echo "<tr>";
+				echo "<td>".$items['id']."</td>";	 
+				echo "<td>".$items['name']."</td>"; 
+				echo "<td>".$items['qty']."</td>";
+				echo "<td>".$items['price']."</td>";
+				echo "<td>".$total = $items['price']*$items['qty']."</td>"; 
+				echo "<td><a href='".site_url('myigniter/deleterow/'.$items['rowid'])."'>Hapus</a></td>"; 			
+			echo "</tr>";
+		} 
+	}
+
+	public function total()
+	{
+		echo $this->cart->total().",-";
+	}
+
+	public function keranjang($id)
 	{
 		$table = "barang";
-		$condition['id'] = $this->input->post('kode');
+		$condition['id'] = $id;
 		$get = $this->myigniter_model->getData($table, $condition);
 		$jml = $get->num_rows();
 		$tambah = TRUE;
 
 		foreach ($this->cart->contents() as $items){
-			$kode = $this->input->post('kode');
+			$kode = $id;
 			  if($items['id'] == $kode){
 			  	$total = $items['qty'] + 1;
 			  	$data = array(
@@ -60,10 +82,6 @@ class Myigniter extends CI_Controller {
 				}
 			}
 		}
-
-		$data['title'] = "Kasri 1.0";
-		$content = "myigniter_view";
-		$this->template->output($data, $content);
 	}
 
 	public function client()

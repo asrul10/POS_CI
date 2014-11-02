@@ -26,7 +26,7 @@
 
 	    <div id="myTabContent" class="tab-content">
 	        <div class="tab-pane fade active in" id="home">
-		      	<form id="form" action="<?= site_url('myigniter/keranjang') ?>" method="POST" role="form">
+		      	<form id="form" action="" method="POST" role="form">
 					<div class="form-group">
 						<label>Kode</label>
 						<input id="kode" type="text" name="kode" autocomplete="off" autofocus="autofocus" class="form-control" placeholder="Kode" required="required">
@@ -36,13 +36,13 @@
 				</form>
 		    </div>
 		    <div class="tab-pane fade " id="profile">
-		    	<form action="<?= site_url('myigniter/keranjang') ?>" method="POST" role="form">
+		    	<form action="" method="POST" role="form">
 					<div class="form-group">
 						<label>Kode</label>
-						<input type="text" name="kode" autocomplete="off" autofocus="autofocus" class="form-control" placeholder="Kode" required="required">
+						<input id="manual" type="text" name="kode" autocomplete="off" autofocus="autofocus" class="form-control" placeholder="Kode" required="required">
 					</div>
 					<div align="right">		
-						<button type="submit" class="btn btn-primary tabs"> Tambah</button>
+						<button type="button" class="btn btn-primary tabs" id="tombol"> Tambah</button>
 					</div>
 				</form>
 	        </div>
@@ -55,8 +55,8 @@
 		</div>
 		<div class="col-md-4 harga">
 			<div align="right">
-			  <h1><?= $this->cart->total() ?>,-</h1>
-				<a href="<?= site_url('myigniter/delete') ?> " class="btn btn-default">Hapus Semua</a>
+			  <h1 id="total"></h1>
+				<button onclick="hapusSemua()" class="btn btn-default">Hapus Semua</button>
 				<a href="<?= site_url('myigniter/selesai') ?> " class="btn btn-success"> Selesai</a>		
 			</div>					
 		</div>
@@ -81,19 +81,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<?php if(empty($this->cart->contents())){
-							echo "<tr><td colspan='6' class='text-center'>Data Kosong</td></tr>";
-						} ?>
-						<?php foreach ($this->cart->contents() as $items): ?>
-							<tr>
-							  <td><?= $items['id'] ?></td>
-							  <td><?= $items['name'] ?></td>
-							  <td><?= $items['qty'] ?></td>
-							  <td><?= $items['price'] ?></td>
-							  <td><?php echo $total = $items['price']*$items['qty']; ?></td>
-							  <td><a href="<?= site_url('myigniter/deleterow/'.$items['rowid']) ?>">Hapus</a> </td>
-							</tr>
-						<?php endforeach; ?>
+						
 					</tbody>
 				</table>
 			</div>
@@ -101,3 +89,82 @@
 	</div>
 	</div>
 </section>
+<script src="<?php echo base_url('assets/js/jquery-ui.min.js') ?>"></script>
+<script>
+$(function() {
+	var availableTags = [
+	  <?php foreach ($cari->result() as $row): ?>
+	  	"<?= $row->id ?>",
+	  <?php endforeach ?>
+	];
+	$( "#manual" ).autocomplete({
+	  source: availableTags
+	});
+
+	$('#myTab a').click(function (e) {
+	  e.preventDefault();
+	  $(this).tab('show');
+	})
+
+	$('#kode').keyup(function() {
+	    konfirmasi();
+	});
+
+	$('#tombol').click(function() {
+		konfirmasi();
+	});
+
+	kolom();
+	total();
+});
+
+
+function kolom()
+{
+  site_url = '<?=site_url()?>';
+  $.get(site_url+'/myigniter/daftarkeranjang', function(data) {
+    $("tbody").html(data);
+  });
+}
+
+function total()
+{
+  site_url = '<?=site_url()?>';
+  $.get(site_url+'/myigniter/total', function(data) {
+    $("#total").html(data)
+  });
+}
+
+function konfirmasi()
+{
+    setTimeout(function(){
+   	  site_url = '<?=site_url()?>';
+   	  var cek = $("#kode").val();
+
+      if (cek == '') {
+	      var id = $("#manual").val();
+      }else{
+	      var id = $("#kode").val();
+      }
+
+      $.get(site_url+'/myigniter/keranjang/'+id, function() {
+        /*optional stuff to do after success */
+        $("#kode").val('');
+        $("#manual").val('');
+        kolom();
+        total();
+      });
+      //$('#form').submit();
+    }, 700);
+}
+
+function hapusSemua()
+{
+	site_url = '<?=site_url()?>';
+	$.get(site_url+'/myigniter/delete', function() {
+		/*optional stuff to do after success */
+		kolom();
+        total();	
+	});
+}
+</script>
