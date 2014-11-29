@@ -16,27 +16,19 @@ class Myigniter extends CI_Controller {
 		$data['cari'] = $this->myigniter_model->get($table);
 
 		$data['title'] = "Kasri 1.0";
+		$data['judule'] = "SEGO PECEL POS";
 		$content = "myigniter_view";
 		$this->template->output($data, $content);
 	}
 
 	public function daftarkeranjang()
 	{
-		foreach ($this->cart->contents() as $items){
-			echo "<tr>";
-				echo "<td>".$items['id']."</td>";	 
-				echo "<td>".$items['name']."</td>"; 
-				echo "<td>".$items['qty']."</td>";
-				echo "<td>".$items['price']."</td>";
-				echo "<td>".$total = $items['price']*$items['qty']."</td>"; 
-				echo "<td><a href='".site_url('myigniter/deleterow/'.$items['rowid'])."'>Hapus</a></td>"; 			
-			echo "</tr>";
-		} 
+		$this->load->view('keranjang_view');
 	}
 
 	public function total()
 	{
-		echo $this->cart->total().",-";
+		echo $this->cart->total();
 	}
 
 	public function keranjang($id)
@@ -96,6 +88,7 @@ class Myigniter extends CI_Controller {
 
 		$data['title'] = "penjualan";
 		$content = "penjualan";
+		$data['judule'] = "PENJUALAN";
 		$this->template->output($data, $content);
 	}
 
@@ -107,6 +100,7 @@ class Myigniter extends CI_Controller {
 
 		$data['title'] = "Penyetoran";
 		$content = "setoran";
+		$data['judule'] = "SETORAN";
 		$this->template->output($data, $content);
 	}
 

@@ -1,3 +1,214 @@
+header {
+	background: url('../img/bg.jpg');
+	color: #fff;
+	box-shadow: 0px 20px 0px 0px rgb( 89, 41, 11 );
+	-moz-box-shadow: 0px 20px 0px 0px rgb( 89, 41, 11 );
+	height: 130px;
+	margin-bottom: 50px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+body {
+  left: 0;
+  margin: 0;
+  
+  position: relative;
+}
+.peteng{
+	background-color: rgb( 33, 33, 33 ) ;
+}
+nav{
+	background-color: rgb( 33, 33, 33 );
+}
+.menuku {
+  left: -285px;  /* start off behind the scenes */
+  height: 100%;
+  position: fixed;
+  width: 285px;
+}
+.menuku ul {
+  border-top: 1px solid #636366;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menuku li {
+  line-height: 45px;
+  padding-bottom: 3px;
+  padding-left: 20px;
+  padding-top: 3px;
+}
+
+.menuku a {
+  font-size: 15px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.menuku a:hover{
+	color: #428bca;
+}
+
+header h1{
+	font-size: 48px;
+	font-weight: bold;
+	line-height: 1.3;
+	text-shadow: 0px 5px 0px rgb( 89, 41, 11 );
+	-moz-text-shadow: 0px 5px 0px rgb( 89, 41, 11 );
+}
+.menu{
+	margin-left: 20px;
+	cursor: pointer;
+}
+.menu:hover{
+	color: rgb( 89, 41, 11 );
+}
+.section1 {
+	margin-top: -30px;
+	background-color: rgb( 192, 202, 51 );
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.nav-tabs{
+	border-bottom: 0;
+}
+.pilihan{
+	display: none;
+}
+#myTabContent .form-control, .modal-body .form-control{
+	border-radius: 0;
+	height: 45px;
+	font-size: 24px;
+}
+.modal-body .form-control{
+	width: 326px;
+	margin-bottom: 20px;
+    text-align:right; 
+}
+#myTabContent .btn{
+	height: 45px;
+}
+.modal-content{
+	border-radius: 0;
+}
+.modal-title {
+  font-size: 30px;
+  color: rgb( 33, 33, 33 );
+  font-weight: bold;
+}
+.tutup {
+	background: #fff;
+	color: rgb( 227, 65, 65 );
+	width: 51px;
+	height: 51px;
+	margin-right: -15px;
+	margin-top: -15px;
+	border: 0;
+	font-size: 30px;
+	float: right;
+}
+.btn{
+	border-radius:0;
+}
+.btn-primary{
+	box-shadow: 0px 5px 0px 0px rgb( 41, 103, 153 );
+}
+.btn-success{
+	box-shadow: 0px 5px 0px 0px #3e8c3e;
+}
+.btn-default{
+	box-shadow: 0px 5px 0px 0px #bdbdbd;
+}
+.btn-default:active, .btn-primary:active, .btn-success:active{
+	box-shadow: 0px 0px 0px 0px rgb( 41, 103, 153 );
+	margin-top: 5px;
+	margin-bottom: -5px;
+}
+.tutup:hover{
+	background-color: rgb( 227, 65, 65 );
+	color: #fff;
+}
+.modal-header{
+	border-bottom: 0;
+}
+.modal-body{
+	padding-top: 50px;
+	padding-bottom: 100px;
+}
+.hapus-semua{
+	width:100%;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus{
+	background-color: rgb( 153, 161, 40 );
+	color: #fff;
+	border: 0;
+	border-radius: 0;
+}
+.nav-tabs>li>a {
+	color: #fff;
+	border: 0;
+	border-radius: 0;
+	margin-right: 0;
+}
+.nav-tabs>li>a:hover, .nav-tabs>li>a:focus{
+	background-color: rgb( 153, 161, 40 );
+}
+.tab-pane{
+    margin-top: 0px;
+}
+.kotak-harga {
+	background-color: rgb( 66, 165, 245 );
+	box-shadow: 0px 10px 0px 0px rgb( 41, 103, 153 );
+	height: 75px;
+	color: #fff;
+	padding-left: 10px;
+	padding-right: 10px;
+	border: 0;
+	width: 100%;
+	text-align: left;
+}
+.kotak-harga:hover, .kotak-harga:focus{
+	background-color: #388cd1;
+}
+.kotak-harga:active{
+	background-color: #388cd1;
+	margin-top: 10px;
+	margin-bottom: -10px;
+	box-shadow: 0px 0px 0px 0px #fff;
+}
+.btn-bayar{
+	width: 326px;
+	height: 61px;
+	font-size: 36px;
+	color: #fff;
+	text-align: center;
+}
+.totalan{
+  font-size: 60px;
+  color: rgb( 33, 33, 33 );
+  font-weight: bold;
+}
+a:hover{
+	text-decoration: none;	
+}
+.kotak-harga h3{
+	margin: 0;
+	text-align: right;
+	line-height: 1.8;
+}
+.garis{
+	border-left: 3px dotted rgb( 255, 255, 255 );
+	border-right: 3px dotted rgb( 255, 255, 255 );
+	height: 100%;
+	padding: 10px;
+}
+
+
+a{
+	cursor: pointer;
+}
 section{
 	margin-bottom:15px;
 }
@@ -13,7 +224,4 @@ section{
 }
 .client{
 	font-size:2em;
-}
-.tab-pane{
-	margin-top:16px;
 }

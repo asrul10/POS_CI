@@ -13,6 +13,7 @@ class Inventory extends CI_Controller {
 		$table = "barang";
 		$content = "barang/view_barang";
 		$data['barang'] = $this->myigniter_model->get($table);
+		$data['judule'] = "INVENTORY";
 		$this->template->output($data, $content);
 	}
 
@@ -20,6 +21,7 @@ class Inventory extends CI_Controller {
 	{
 		$data['title'] = "Tambah Barang";
 		$content = "barang/tambah_barang";
+		$data['judule'] = "TAMBAH BARANG";
 		$this->template->output($data, $content);
 	}
 
@@ -46,6 +48,7 @@ class Inventory extends CI_Controller {
 
 		$data['title'] = "Update Barang";
 		$content = "barang/update_barang";
+		$data['judule'] = "EDIT BARANG";
 		$this->template->output($data, $content);
 	}
 

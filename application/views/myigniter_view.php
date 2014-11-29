@@ -1,34 +1,21 @@
-<!-- Header -->
-<header>
-	<div class="container">
-	<div class="row">
-		<div class="col-lg-12 text-center">
-			<div class="page-header">
-			  <h1>APLIKASI KASIR</h1>
-			</div>
-		</div>
-	</div>
-	</div>
-</header>
-
 <!-- Form -->
-<section>
+<section class="section1">
 	<div class="container">
 	<div class="row">
-		<div class="col-md-4">
+	<div class="col-md-4">
 			
 
 	<div class="bs-example bs-example-tabs">
-	    <ul id="myTab" class="nav nav-tabs" role="tablist">
-	      <li class="active"><a href="#home" role="tab" data-toggle="tab">Auto</a></li>
-	      <li class=""><a href="#profile" role="tab" data-toggle="tab">Manual</a></li>
-	    </ul>
-
+		<div>
+		    <ul id="myTab" class="nav nav-tabs" role="tablist">
+		      <li class="active"><a href="#home" role="tab" data-toggle="tab"><i class="fa fa-gear"></i> Auto</a></li>
+		      <li class=""><a href="#profile" role="tab" data-toggle="tab"><i class="fa fa-gear"></i> Manual</a></li>
+		    </ul>
+	    </div>
 	    <div id="myTabContent" class="tab-content">
-	        <div class="tab-pane fade active in" id="home">
+	        <div class="tab-pane fade active in " id="home">
 		      	<form id="form" action="" method="POST" role="form">
-					<div class="form-group">
-						<label>Kode</label>
+					<div class="input-group">
 						<input id="kode" type="text" name="kode" autocomplete="off" autofocus="autofocus" class="form-control" placeholder="Kode" required="required">
 					</div>
 					<div align="right">		
@@ -37,29 +24,31 @@
 		    </div>
 		    <div class="tab-pane fade " id="profile">
 		    	<form action="" method="POST" role="form">
-					<div class="form-group">
-						<label>Kode</label>
+		    		<div class="input-group">
 						<input id="manual" type="text" name="kode" autocomplete="off" autofocus="autofocus" class="form-control" placeholder="Kode" required="required">
-					</div>
-					<div align="right">		
-						<button type="button" class="btn btn-primary tabs" id="tombol"> Tambah</button>
-					</div>
+				      <span class="input-group-btn">
+						<button type="button" class="btn btn-default tabs" id="tombol" > Add</button>
+				      </span>
+				    </div>
 				</form>
 	        </div>
 	    </div>
 	</div>
 
+	</div>
+	<div class="col-md-4 harga">
+		<!--empty-->
+	</div>
+	<div class="col-md-4 harga">
+		<a data-toggle="modal" href='#modal-id' class="kusus">
+		<div class="kotak-harga">
+			<div class="garis">
+			  <span>BAYAR</span>
+			  <h3 id="total" ></h3>
+			</div>
 		</div>
-		<div class="col-md-4 harga">
-			  <h1><small>Total Rp.</small></h1>
-		</div>
-		<div class="col-md-4 harga">
-			<div align="right">
-			  <h1 id="total"></h1>
-				<button onclick="hapusSemua()" class="btn btn-default">Hapus Semua</button>
-				<a href="<?= site_url('myigniter/selesai') ?> " class="btn btn-success"> Selesai</a>		
-			</div>					
-		</div>
+		</a>
+	</div>
 	</div>
 	</div>
 </section>
@@ -68,28 +57,39 @@
 	<div class="container">
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<div class="table-responsive">
-				<table class="table table-hover table-bordered table-striped">
-					<thead>
-						<tr>
-							<th>Kode</th>
-							<th>Nama</th>
-							<th>Quantity</th>
-							<th>Harga Satuan</th>
-							<th>Harga Total</th>
-							<th>Hapus</th>
-						</tr>
-					</thead>
-					<tbody>
-						
-					</tbody>
-				</table>
+			<div class="table-responsive keranjang">
 			</div>
 		</div>
 	</div>
 	</div>
 </section>
+<!--Modal-->
+<div class="modal fade" id="modal-id">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="tutup" data-dismiss="modal" aria-hidden="true"><i class="fa fa-close"></i></button>
+				<h4 class="modal-title">KALKULATOR</h4>
+			</div>
+			<div class="modal-body text-center">
+				<h4 class="totalan" ></h4>
+				<form>
+				<center >
+				<input type="text" id="bayare" name="" class="form-control" required="required" placeholder="Bayar">
+				</center>
+				<div id="ganti">
+				</div>
+			</div>
+			<div class="modal-footer">
+					<button type="button" id="kembalian" class="btn btn-primary">KEMBALIAN</button>
+					<a class="btn btn-success" href="<?=site_url("myigniter/selesai")?>">SLESAI</a>
+				<form>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 <script src="<?php echo base_url('assets/js/jquery-ui.min.js') ?>"></script>
+<script src="<?php echo base_url('assets/js/jquery.price_format.2.0.min.js') ?>"></script>
 <script>
 $(function() {
 	var availableTags = [
@@ -111,11 +111,32 @@ $(function() {
 	});
 
 	$('#tombol').click(function() {
+		$(this).addClass('disabled');
 		konfirmasi();
 	});
 
 	kolom();
 	total();
+
+	var rupiah ={prefix: 'Rp. ', thousandsSeparator: '.', centsLimit: 0};
+	$('#bayare').priceFormat(rupiah);
+	$('#ganti');
+
+	$('#kembalian').click(function() {
+		site_url = '<?=site_url()?>';
+		$.get(site_url+'/myigniter/total', function(data) {
+			tot = data;
+			bayare = $('#bayare').unmask();
+			kembali = bayare - tot;
+			$('#ganti').html('<h4 class="totalan">'+kembali+'</h4>');
+			$('.totalan').priceFormat({prefix: 'Rp. ', thousandsSeparator: '.', centsLimit: 0});
+	    });
+	});
+
+	$('.tutup').click(function() {
+		/* Act on the event */
+
+	});
 });
 
 
@@ -123,7 +144,7 @@ function kolom()
 {
   site_url = '<?=site_url()?>';
   $.get(site_url+'/myigniter/daftarkeranjang', function(data) {
-    $("tbody").html(data);
+    $(".keranjang").html(data);
   });
 }
 
@@ -131,7 +152,11 @@ function total()
 {
   site_url = '<?=site_url()?>';
   $.get(site_url+'/myigniter/total', function(data) {
-    $("#total").html(data)
+    $("#total, .totalan").html(data).priceFormat({
+		prefix: 'Rp. ',
+	    thousandsSeparator: '.',
+	    centsLimit: 0
+    });
   });
 }
 
@@ -153,7 +178,9 @@ function konfirmasi()
         $("#manual").val('');
         kolom();
         total();
-      });
+      }).done(function() {
+		$("#tombol").removeClass('disabled');
+	  });
       //$('#form').submit();
     }, 700);
 }

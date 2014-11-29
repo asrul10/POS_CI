@@ -1,15 +1,3 @@
-<header>
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="page-header text-center">
-				  <h1>Penjualan</h1>
-				</div>
-			</div>
-		</div>
-	</div>
-</header>
-       
 <section>
 	<div class="container">        
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

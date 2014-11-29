@@ -2,17 +2,6 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<div class="page-header text-center">
-				  <h1>Daftar Barang</h1>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<section>
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
 				<a class="btn btn-primary" href="<?= site_url('inventory/tambahbarang') ?>">
 					<i class="fa fa-plus"></i> Tambah Barang</a>
 				<br>

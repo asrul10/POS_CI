@@ -3,8 +3,6 @@
 		<div class="row">
 			<div class="col-lg-12">			
 				<form action="<?= site_url('myigniter/setoranSubmit') ?>" method="POST" role="form">
-					<legend>Setoran</legend>
-
 					<div class="form-group">
 						<label for="">Penyetor</label>
 						<input type="text" class="form-control" name="nama" required="required">						
@@ -21,7 +19,6 @@
 						<label for="">Setoran</label>
 						<input type="text" class="form-control" name="setor" required="required">
 					</div>				
-					<a class="btn btn-default" href="<?= site_url('inventory') ?>">Kembali</a>
 					<button type="submit" class="btn btn-primary">Simpan</button>
 				</form>
 			</div>
